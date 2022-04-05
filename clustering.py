@@ -34,4 +34,14 @@ def loadImages():
   return imgs
 
 
+def main():
+  #the below line of code defines the criteria for the algorithm to stop running,
+  #which will happen is 100 iterations are run or the epsilon (which is the required accuracy)
+  #becomes 85%
+  criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.85)
+
+  images = loadImages()
+
+  #KMeans
+  kmeans_centers, kmeans_labels, _ = KMeans().fit(images)
 
