@@ -17,12 +17,14 @@ def loadImages():
       #read image and convert it to rgb
       path = 'ORL\\' + str(imgCount) + '_' + str(personCount) + '.jpg'
       img = cv2.imread(path)
-      img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+      img = np.asarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
       if img is not None:
         #reshape
-        img = img.reshape((-1,3))
+        pxl = img.reshape((-1,3))
+        #convert to float
+        pxl = np.float32(pxl)
         #append image to the list
-        imgs.append([img, personCount])
+        imgs.append([pxl, personCount])
         #print(img.shape)
       else:
         personCount -= 1
