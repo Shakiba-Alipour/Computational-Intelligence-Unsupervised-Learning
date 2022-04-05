@@ -1,10 +1,10 @@
 from importlib.resources import path
 import numpy as np
 import cv2
-import sklearn.cluster
+from sklearn.cluster import KMeans
 from sklearn.datasets import make_classification
 from matplotlib import pyplot as plt
-
+from PIL import Image
 
 def loadImages():
   imgCount = 0
@@ -19,9 +19,11 @@ def loadImages():
       img = cv2.imread(path)
       img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
       if img is not None:
+        #reshape
+        img = img.reshape((-1,3))
         #append image to the list
         imgs.append([img, personCount])
-        print(img.shape)
+        #print(img.shape)
       else:
         personCount -= 1
         imgCount -= 1
@@ -30,4 +32,4 @@ def loadImages():
   return imgs
 
 
-imgs = loadImages()
+
