@@ -1,7 +1,7 @@
 from importlib.resources import path
 import numpy as np
 import cv2
-from sklearn.cluster import KMeans
+from sklearn.cluster import *
 from sklearn.datasets import make_classification
 from matplotlib import pyplot as plt
 from PIL import Image
@@ -43,5 +43,17 @@ def main():
   images = loadImages()
 
   #KMeans
-  kmeans_centers, kmeans_labels, _ = KMeans().fit(images)
+  kmeans_labels = KMeans().fit(images).predict()
+
+  #DBSCAN
+  dbscan_labels = DBSCAN().fit_predict(images)
+
+  #single link
+  single_link_labels = AgglomerativeClustering(linkage = 'single').fit_predict(images)
+
+  #single link
+  complete_link_labels = AgglomerativeClustering(linkage = 'complete').fit_predict(images)  
+
+  #single link
+  group_average_link_labels = AgglomerativeClustering(linkage = 'average').fit_predict(images)
 
