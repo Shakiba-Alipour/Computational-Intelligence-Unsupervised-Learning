@@ -35,15 +35,11 @@ def loadImages():
 
 
 def main():
-  #the below line of code defines the criteria for the algorithm to stop running,
-  #which will happen is 100 iterations are run or the epsilon (which is the required accuracy)
-  #becomes 85%
-  criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 100, 0.85)
 
   images = loadImages()
 
   #KMeans
-  kmeans_labels = KMeans().fit(images).predict()
+  kmeans_labels = KMeans().fit_predict(images)
 
   #DBSCAN
   dbscan_labels = DBSCAN().fit_predict(images)
